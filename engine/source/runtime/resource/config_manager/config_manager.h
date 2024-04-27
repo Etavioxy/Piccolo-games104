@@ -24,7 +24,6 @@ namespace Piccolo
 
         const std::string& getDefaultWorldUrl() const;
         const std::string& getGlobalRenderingResUrl() const;
-        const std::string& getGlobalParticleResUrl() const;
 
     private:
         std::filesystem::path m_root_folder;

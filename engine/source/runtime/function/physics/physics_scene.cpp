@@ -23,7 +23,6 @@
 #include "Jolt/Physics/Collision/RayCast.h"
 #include "Jolt/Physics/Collision/Shape/BoxShape.h"
 #include "Jolt/Physics/Collision/Shape/CapsuleShape.h"
-#include "Jolt/Physics/Collision/Shape/CompoundShapeVisitors.h"
 #include "Jolt/Physics/Collision/Shape/SphereShape.h"
 #include "Jolt/Physics/Collision/Shape/StaticCompoundShape.h"
 #include "Jolt/Physics/Collision/ShapeCast.h"
@@ -146,7 +145,6 @@ namespace Piccolo
         }
 
         body_interface.AddBody(jph_body->GetID(), JPH::EActivation::Activate);
-        LOG_INFO("Add Body: {}", jph_body->GetID().GetIndexAndSequenceNumber());
 
         return jph_body->GetID().GetIndexAndSequenceNumber();
     }
@@ -157,10 +155,13 @@ namespace Piccolo
     {
         JPH::BodyInterface& body_interface = m_physics.m_jolt_physics_system->GetBodyInterface();
 
-        body_interface.SetPositionAndRotation(JPH::BodyID(body_id),
-                                              toVec3(global_transform.m_position),
-                                              toQuat(global_transform.m_rotation),
-                                              JPH::EActivation::Activate);
+        Matrix4x4 com_transform = toMat44(body_interface.GetCenterOfMassTransform(JPH::BodyID(body_id)));
+
+        body_interface.SetPositionAndRotation(
+            JPH::BodyID(body_id),
+            toVec3(global_transform.m_position),
+            toQuat(global_transform.m_rotation),
+            JPH::EActivation::Activate);
     }
 
     void PhysicsScene::tick(float delta_time)
@@ -177,7 +178,7 @@ namespace Piccolo
         for (uint32_t body_id : m_pending_remove_bodies)
         {
             LOG_INFO("Remove Body {}", body_id)
-            body_interface.RemoveBody(JPH::BodyID(body_id));
+                body_interface.RemoveBody(JPH::BodyID(body_id));
             body_interface.DestroyBody(JPH::BodyID(body_id));
         }
         m_pending_remove_bodies.clear();
@@ -307,11 +308,8 @@ namespace Piccolo
         }
 
         JPH::AnyHitCollisionCollector<JPH::CollideShapeCollector> collector;
-        scene_query.CollideShape(jph_shape,
-                                 JPH::Vec3::sReplicate(1.0f),
-                                 toMat44(shape_global_transform),
-                                 JPH::CollideShapeSettings(),
-                                 collector);
+        scene_query.CollideShape(
+            jph_shape, JPH::Vec3::sReplicate(1.0f), toMat44(global_transform), JPH::CollideShapeSettings(), collector);
 
         return collector.HadHit();
     }

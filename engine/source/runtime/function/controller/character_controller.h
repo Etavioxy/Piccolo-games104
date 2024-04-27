@@ -20,13 +20,17 @@ namespace Piccolo
         virtual ~Controller() = default;
 
         virtual Vector3 move(const Vector3& current_position, const Vector3& displacement) = 0;
+
+        bool isTouchGround() const { return m_is_touch_ground; }
+
+    protected:
+        bool m_is_touch_ground {false};
     };
 
     class CharacterController : public Controller
     {
     public:
         CharacterController(const Capsule& capsule);
-        ~CharacterController() = default;
 
         Vector3 move(const Vector3& current_position, const Vector3& displacement) override;
 

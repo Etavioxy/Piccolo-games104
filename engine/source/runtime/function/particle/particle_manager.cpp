@@ -26,7 +26,7 @@ namespace Piccolo
         }
 
         GlobalParticleRes  global_particle_res;
-        const std::string& global_particle_res_url = config_manager->getGlobalParticleResUrl();
+        const std::string& global_particle_res_url = "";
         asset_manager->loadAsset(global_particle_res_url, global_particle_res);
 
         if (global_particle_res.m_emit_gap < 0)

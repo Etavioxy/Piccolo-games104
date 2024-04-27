@@ -907,6 +907,93 @@
           "$typeName": "TransformComponent"
         }
       ]
+    },
+    {
+      "name": "Step_wall_1",
+      "definition": "asset/objects/environment/wall/wall.object.json",
+      "instanced_components": [
+        {
+          "$context": {
+            "transform": {
+              "position": {
+                "x": -6,
+                "y": -7.6,
+                "z": 0.15
+              },
+              "rotation": {
+                "w": 0.70710678118654752,
+                "x": 0.0,
+                "y": 0.70710678118654752,
+                "z": -0.0
+              },
+              "scale": {
+                "x": 0.75,
+                "y": 0.35,
+                "z": 0.5
+              }
+            }
+          },
+          "$typeName": "TransformComponent"
+        }
+      ]
+    },
+    {
+      "name": "Step_wall_2",
+      "definition": "asset/objects/environment/wall/wall.object.json",
+      "instanced_components": [
+        {
+          "$context": {
+            "transform": {
+              "position": {
+                "x": -7,
+                "y": -7.6,
+                "z": 0.37
+              },
+              "rotation": {
+                "w": 0.70710678118654752,
+                "x": 0.0,
+                "y": 0.70710678118654752,
+                "z": -0.0
+              },
+              "scale": {
+                "x": 0.75,
+                "y": 0.35,
+                "z": 0.5
+              }
+            }
+          },
+          "$typeName": "TransformComponent"
+        }
+      ]
+    },
+    {
+      "name": "Step_wall_3",
+      "definition": "asset/objects/environment/wall/wall.object.json",
+      "instanced_components": [
+        {
+          "$context": {
+            "transform": {
+              "position": {
+                "x": -8,
+                "y": -7.6,
+                "z": 0.59
+              },
+              "rotation": {
+                "w": 0.70710678118654752,
+                "x": 0.0,
+                "y": 0.70710678118654752,
+                "z": -0.0
+              },
+              "scale": {
+                "x": 0.75,
+                "y": 0.35,
+                "z": 0.5
+              }
+            }
+          },
+          "$typeName": "TransformComponent"
+        }
+      ]
     }
   ]
 }
