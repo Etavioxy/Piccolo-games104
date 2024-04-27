@@ -126,6 +126,35 @@ namespace Piccolo
 #else
 #error Unknown Compiler
 #endif
+        /*
+这些函数是在Vulkan RHI（Rendering Hardware Interface）初始化过程中调用的，用于创建和配置Vulkan图形渲染的各种资源和对象。下面是对每个函数的解释：
+
+createInstance()：创建Vulkan实例，它是Vulkan API的入口点，并包含全局状态和设置。
+
+initializeDebugMessenger()：初始化调试消息处理程序，用于在应用程序执行期间捕获和处理Vulkan调试消息，以帮助调试和排查问题。
+
+createWindowSurface()：创建与窗口系统交互的Vulkan表面，用于将图形渲染结果呈现到窗口上。
+
+initializePhysicalDevice()：初始化物理设备，选择和配置适合当前系统的物理GPU设备。
+
+createLogicalDevice()：创建逻辑设备，它是与物理设备交互的接口，并管理Vulkan资源。
+
+createCommandPool()：创建命令池，用于分配和管理命令缓冲区对象，这些对象包含了执行图形渲染的指令。
+
+createCommandBuffers()：创建命令缓冲区，用于记录要在渲染过程中执行的一系列命令。
+
+createDescriptorPool()：创建描述符池，用于分配和管理描述符集合，描述符集合定义了渲染管线中的资源绑定。
+
+createSyncPrimitives()：创建同步原语，如信号量和栅栏，用于在多个渲染操作之间进行同步和控制。
+
+createSwapchain()：创建交换链，它是用于在窗口表面上显示图像的一组图像缓冲区。
+
+createSwapchainImageViews()：为交换链中的每个图像缓冲区创建图像视图，图像视图描述了图像数据的格式和访问方式。
+
+createFramebufferImageAndView()：创建帧缓冲区的图像和图像视图，帧缓冲区是渲染管线输出结果的目标。
+
+createAssetAllocator()：创建资源分配器，用于管理和分配Vulkan资源，如缓冲区和图像。
+*/
 
         createInstance();
 
